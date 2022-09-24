@@ -1,12 +1,13 @@
 const csv = require("csv");
 const fs = require("fs");
+const path = require("path");
 
-const monitorFilePath = "data/montior.csv";
+const MONITOR_FILE_PATH = path.join(__dirname, "../data/montior.csv");
 
 const getMonitoringData = () => {
   return new Promise((resolve) => {
     const data = [];
-    fs.createReadStream(monitorFilePath)
+    fs.createReadStream(MONITOR_FILE_PATH)
       .pipe(csv.parse({ columns: true }))
       .on("data", (row) => {
         data.push({
@@ -24,7 +25,7 @@ const updateMonitoringData = (data) => {
   return new Promise((resolve) => {
     csv
       .stringify(data, { header: true })
-      .pipe(fs.createWriteStream(monitorFilePath))
+      .pipe(fs.createWriteStream(MONITOR_FILE_PATH))
       .on("finish", () => resolve());
   });
 };

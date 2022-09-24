@@ -29,7 +29,7 @@ const findPriceChanges = (items) => {
   });
 };
 
-const alertOnNewLowestPrices = (items) => {
+const alertOnNewLowestPrices = (items, notifier) => {
   let messages = [];
   for (let item of items) {
     if (item.alertOnPriceChange) {
@@ -46,17 +46,23 @@ const alertOnNewLowestPrices = (items) => {
   if (!messages.length) {
     console.debug("No price change detected.");
   } else {
-    const message = messages.join("\n");
-    console.log(message);
+    for (let message of messages) {
+      const notificationData = {
+        title: "TCGPlayer Price Change",
+        message,
+      };
+      notifier.notify(notificationData);
+      console.log("Sent a notification about price change: ", notificationData);
+    }
   }
 };
 
-const monitor = () => {
+const monitor = (notifier) => {
   return getMonitoringData()
     .then((data) => getAllLowestPrices(data))
     .then((data) => findPriceChanges(data))
     .then((data) => {
-      alertOnNewLowestPrices(data);
+      alertOnNewLowestPrices(data, notifier);
 
       const writeData = data.map((item) => ({
         id: item.id,
