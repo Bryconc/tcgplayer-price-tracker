@@ -1,0 +1,17 @@
+{
+  "name": "tcgplayer-monitor",
+  "version": "1.0.0",
+  "description": "A monitoring program to look for price changes on TCGPlayer",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "csv": "^6.2.0",
+    "node-cron": "^3.0.2"
+  }
+}
