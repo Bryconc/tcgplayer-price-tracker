@@ -5,3 +5,5 @@ const notifier = require("./personal-machine-notifier");
 cron.schedule("*/30 * * * *", () => {
   monitor(notifier);
 });
+
+monitor(notifier);

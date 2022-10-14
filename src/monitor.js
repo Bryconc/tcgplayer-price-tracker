@@ -44,7 +44,9 @@ const alertOnNewLowestPrices = (items, notifier) => {
   }
 
   if (!messages.length) {
-    console.debug("No price change detected.");
+    console.debug(
+      `[${new Date().toLocaleString()}]: No price change detected.`
+    );
   } else {
     for (let message of messages) {
       const notificationData = {
@@ -52,7 +54,10 @@ const alertOnNewLowestPrices = (items, notifier) => {
         message,
       };
       notifier.notify(notificationData);
-      console.log("Sent a notification about price change: ", notificationData);
+      console.log(
+        `[${new Date().toLocaleString()}]: Sent a notification about price change: `,
+        notificationData
+      );
     }
   }
 };
