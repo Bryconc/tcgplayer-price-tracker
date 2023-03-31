@@ -1,6 +1,6 @@
 {
   "name": "tcgplayer-monitor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A monitoring program to look for price changes on TCGPlayer",
   "main": "src/index.js",
   "scripts": {
